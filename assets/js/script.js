@@ -9,6 +9,9 @@
     // question2: {question: "Commonly used data types DO NOT include:", answer1: "strings", answer2: "booleans", answer3: "numbers", answer4: "alerts", correct: 3,}
 
 // }
+
+// I struggled with the format of the quiz but believe I got it correct.
+
 var quiz = [{
     question: "The condition in an if/else statement is enclosed with ___________.",
     answers: ["quotes", "curly brackets", "parenthesis", "square brackets"],
@@ -23,12 +26,17 @@ var quiz = [{
 
 // var testArray = ["Question1", "Question2", "Question3"];
 
+// Just to make sure the quiz is being read properly.
+
 console.log("Quiz length: " + Object.keys(quiz).length);
+
+// timer counts down from 5 for tessting purposes
 
 var startButton = document.querySelector(".start-button");
 var timer = document.querySelector("#timer");
 var secondsLeft = 5;
 
+// created this function to start the timer
 
 function quiztimer() {
     var timerInterval = setInterval(function () {
@@ -39,10 +47,18 @@ function quiztimer() {
             console.log("Timer done!");
         }
     }, 1000);
+
+// then I run my quiz function
+
 runquiz();
 }
 
+// reset the quiz
+
 var QI = 0;
+
+//  create a function that loops through each question and answers
+
 function askQuestion() {
     console.log(quiz[0].question);
     var questionTitle = document.getElementById("question-title");
@@ -54,6 +70,9 @@ function askQuestion() {
     button.setAttribute("value", answer);
     button.addEventListener("click", function (e){
         var userSelection=e.target.value;
+
+// I was able to console.log the fact that I am getting either right or wrong answers
+
         if(userSelection === quiz[QI].correct){
             console.log("correct");
             } else {
@@ -61,12 +80,14 @@ function askQuestion() {
             } QI++
             askQuestion();
     })
+    
+    // I was able to display the buttons.
+
     document.getElementById("choices").append(button);
     })
 }
 
-// var questions = document.querySelector("h1");
-// var answeroptions = document.querySelector("#answerList");
+// starts the quiz and gets rid of the opening paragraph
 
 function runquiz() {
 
@@ -79,6 +100,7 @@ function runquiz() {
     // create another div in html for questons just like before
     // queestion class show
 
+// below are a lot of failed attempts and getting the code working
 
     // for (var i = 0; i < testArray.length; i++) {
     //     var quizQuestions = testArray[i];
@@ -116,6 +138,8 @@ function runquiz() {
         // console.log("quiz questions");
     // }
 }
+
+// start button that calls quiztimre()
 
 startButton.addEventListener("click", function () {
     console.log("Start!");
