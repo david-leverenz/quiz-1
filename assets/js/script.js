@@ -12,14 +12,14 @@
 var quiz = [{
     question: "The condition in an if/else statement is enclosed with ___________.",
     answers: ["quotes", "curly brackets", "parenthesis", "square brackets"],
-    correct: 2,
+    correct: "parenthesis",
 },
 {
     question: "Commonly used data types DO NOT include:",
     answers: ["strings", "booleans", "numbers", "alerts"],
-    correct: 3,
+    correct: "alerts",
 }]
-console.log(quiz);
+// console.log(quiz);
 
 // var testArray = ["Question1", "Question2", "Question3"];
 
@@ -39,12 +39,47 @@ function quiztimer() {
             console.log("Timer done!");
         }
     }, 1000);
+runquiz();
 }
 
-var questions = document.querySelector("h1");
-var answeroptions = document.querySelector("#answerList");
+var QI = 0;
+function askQuestion() {
+    console.log(quiz[0].question);
+    var questionTitle = document.getElementById("question-title");
+    questionTitle.textContent=quiz[QI].question;
+
+    quiz[QI].answers.forEach(function(answer) {
+        var button=document.createElement("button");
+    button.textContent = answer;
+    button.setAttribute("value", answer);
+    button.addEventListener("click", function (e){
+        var userSelection=e.target.value;
+        if(userSelection === quiz[QI].correct){
+            console.log("correct");
+            } else {
+                console.log("incorrect");
+            } QI++
+            askQuestion();
+    })
+    document.getElementById("choices").append(button);
+    })
+}
+
+// var questions = document.querySelector("h1");
+// var answeroptions = document.querySelector("#answerList");
 
 function runquiz() {
+
+    var startScreen = document.getElementById("start-screen");
+    startScreen.setAttribute("class", "hide");
+
+    document.getElementById("questions").removeAttribute("class");
+    askQuestion()
+
+    // create another div in html for questons just like before
+    // queestion class show
+
+
     // for (var i = 0; i < testArray.length; i++) {
     //     var quizQuestions = testArray[i];
 
@@ -58,33 +93,34 @@ function runquiz() {
     //     console.log(h1);
     //     console.log("quiz questions");
 
-    var answerListItems = document.querySelector("#answerList");
+    // var answerListItems = document.querySelector("#answerList");
 
-        for (var i = 0; i < Object.keys(quiz).length; i++) {
-        var quizQuestions = quiz[i];
+    //     for (var i = 0; i < Object.keys(quiz).length; i++) {
+    //     var quizQuestions = quiz[i];
 
-        console.log("I made it into the loop.");
+    //     console.log("I made it into the loop.");
+    //     console.log(quizQuestions);
         
-        var h1 = document.createElement("h1");
+    //     var h1 = document.createElement("h1");
    
-        document.getElementById("questionLine").innerHTML=quiz.question1[0];
+        // document.getElementById("questionLine").innerHTML=quiz.question1[0];
 
-        var li = document.createElement("li");
+        // var li = document.createElement("li");
 
-        document.getElementById("answerList").innerHTML=quiz.question1[1];
+        // document.getElementById("answerList").innerHTML=quiz.question1[1];
       
 
         // li.textContent=quiz.question1[1];
         // li.innerHTML=quiz.question1[2];
 
-        console.log("quiz questions");
-    }
+        // console.log("quiz questions");
+    // }
 }
 
 startButton.addEventListener("click", function () {
     console.log("Start!");
     quiztimer();
-    runquiz();
+    // runquiz();
 
 })
 // gameOver()

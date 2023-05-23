@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,21 +9,31 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Coding Quiz</title>
 </head>
+
 <body>
-<header>
-    <a href="https://www.w3schools.com">View high scores</a>
-    <div id="timer">Time:</div> 
-</header>
-<main>
-    <h1 id="questionLine">Coding Quiz Challenge</h1>
-    <section id="central">
-        <p>Try to answer the following code-related questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-        <ol id="answerList"></ol>
-        <button class="start-button">Start Quiz</button>
-    </section>
-    <!-- <ol id="answerList"></ol> -->
-</main>
-    
+    <header>
+        <a href="https://www.w3schools.com">View high scores</a>
+        <div id="timer">Time:</div>
+    </header>
+    <main>
+        <div id="start-screen" class="start">
+            <h1 id="questionLine">Coding Quiz Challenge</h1>
+            <section id="central">
+                <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
+                    answers will penalize your score/time by ten seconds!</p>
+   
+                <button class="start-button">Start Quiz</button>
+            </section>
+        </div>
+        <div id="questions" class="hide" style="border: 1px solid black">
+            <h2 id="question-title"></h2>
+            <div id="choices" class="choices"></div>
+        </div>
+        <!-- <ol id="answerList"></ol> -->
+        <!-- <ol id="answerList"></ol> -->
+    </main>
+
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
