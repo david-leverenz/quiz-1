@@ -98,9 +98,9 @@ function runquiz() {
     askQuestion()
 
     // create another div in html for questons just like before
-    // queestion class show
+    // question class show
 
-// below are a lot of failed attempts and getting the code working
+// below are a lot of failed attempts at getting the code working
 
     // for (var i = 0; i < testArray.length; i++) {
     //     var quizQuestions = testArray[i];
