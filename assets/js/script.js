@@ -1,27 +1,31 @@
-var quiz = {
-    question1: ["The condition in an if/else statement is enclosed with ___________.", "quotes", "curly brackets", "parenthesis", "square brackets", 2],
+// var quiz = {
+//     question1: ["The condition in an if/else statement is enclosed with ___________.", "quotes", "curly brackets", "parenthesis", "square brackets", 2],
 
-    question2: ["Commonly used data types DO NOT include:", "strings", "booleans", "numbers", "alerts", 3]
-}
+//     question2: ["Commonly used data types DO NOT include:", "strings", "booleans", "numbers", "alerts", 3]
+// }
 
     // question1: {question: "The condition in an if/else statement is enclosed with ___________.", answer1: "quotes", answer2: "curly brackets", answer3: "parenthesis", answer4: "square brackets", correct: 2,},
 
     // question2: {question: "Commonly used data types DO NOT include:", answer1: "strings", answer2: "booleans", answer3: "numbers", answer4: "alerts", correct: 3,}
 
 // }
-// {
-//     question: "Commonly used data types DO NOT include:",
-//     answers: ["strings", "booleans", "numbers", "alerts"],
-//     correct: 3,
-// }
+var quiz = [{
+    question: "The condition in an if/else statement is enclosed with ___________.",
+    answers: ["quotes", "curly brackets", "parenthesis", "square brackets"],
+    correct: 2,
+},
+{
+    question: "Commonly used data types DO NOT include:",
+    answers: ["strings", "booleans", "numbers", "alerts"],
+    correct: 3,
+}]
+console.log(quiz);
 
-console.log(quiz.question1[0]);
-
-var testArray = ["Question1", "Question2", "Question3"];
+// var testArray = ["Question1", "Question2", "Question3"];
 
 console.log("Quiz length: " + Object.keys(quiz).length);
 
-var startButton = document.querySelector(".start-button")
+var startButton = document.querySelector(".start-button");
 var timer = document.querySelector("#timer");
 var secondsLeft = 5;
 
@@ -37,8 +41,8 @@ function quiztimer() {
     }, 1000);
 }
 
-var questions = document.querySelector("h1")
-var answeroptions = document.querySelector("#answerList")
+var questions = document.querySelector("h1");
+var answeroptions = document.querySelector("#answerList");
 
 function runquiz() {
     // for (var i = 0; i < testArray.length; i++) {
@@ -83,5 +87,12 @@ startButton.addEventListener("click", function () {
     runquiz();
 
 })
+// gameOver()
 
+// function gameOver()
+//     var scoreButton = document.querySelector(".score-button");
+// scoreButton.addEventListener("click", function () {
+//         console.log("Score!");
 
+// var form = document.createElement("initials")
+// initials.setAttribute("type","text");
