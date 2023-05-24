@@ -4,9 +4,9 @@
 //     question2: ["Commonly used data types DO NOT include:", "strings", "booleans", "numbers", "alerts", 3]
 // }
 
-    // question1: {question: "The condition in an if/else statement is enclosed with ___________.", answer1: "quotes", answer2: "curly brackets", answer3: "parenthesis", answer4: "square brackets", correct: 2,},
+// question1: {question: "The condition in an if/else statement is enclosed with ___________.", answer1: "quotes", answer2: "curly brackets", answer3: "parenthesis", answer4: "square brackets", correct: 2,},
 
-    // question2: {question: "Commonly used data types DO NOT include:", answer1: "strings", answer2: "booleans", answer3: "numbers", answer4: "alerts", correct: 3,}
+// question2: {question: "Commonly used data types DO NOT include:", answer1: "strings", answer2: "booleans", answer3: "numbers", answer4: "alerts", correct: 3,}
 
 // }
 
@@ -30,11 +30,11 @@ var quiz = [{
 
 console.log("Quiz length: " + Object.keys(quiz).length);
 
-// timer counts down from 5 for tessting purposes
+// timer counts down from 10 for testing purposes
 
 var startButton = document.querySelector(".start-button");
 var timer = document.querySelector("#timer");
-var secondsLeft = 5;
+var secondsLeft = 10;
 
 // created this function to start the timer
 
@@ -48,42 +48,59 @@ function quiztimer() {
         }
     }, 1000);
 
-// then I run my quiz function
+    // then I run my quiz function
 
-runquiz();
+    runquiz();
 }
 
 // reset the quiz
 
 var QI = 0;
 
+//  created a function to count correct answers and store that value in local storage
+
+var correctCount = 0
+
+function countCorrect() {
+    localStorage.setItem("count", correctCount);;
+    correctCount++;
+    localStorage.setItem("count", correctCount);
+}
+
 //  create a function that loops through each question and answers
+// for some reason it is not clearing out the previous question's answers
 
 function askQuestion() {
     console.log(quiz[0].question);
     var questionTitle = document.getElementById("question-title");
-    questionTitle.textContent=quiz[QI].question;
+    questionTitle.textContent = quiz[QI].question;
 
-    quiz[QI].answers.forEach(function(answer) {
-        var button=document.createElement("button");
-    button.textContent = answer;
-    button.setAttribute("value", answer);
-    button.addEventListener("click", function (e){
-        var userSelection=e.target.value;
+    quiz[QI].answers.forEach(function (answer) {
+        var button = document.createElement("button");
+        button.textContent = answer;
+        button.setAttribute("value", answer);
+        button.addEventListener("click", function (e) {
+            var userSelection = e.target.value;
 
-// I was able to console.log the fact that I am getting either right or wrong answers
+            // I was able to console.log the fact that I am getting either right or wrong answers
+            // I can also display incorrect at the bottom if the answer is wrong
 
-        if(userSelection === quiz[QI].correct){
-            console.log("correct");
+            if (userSelection === quiz[QI].correct) {
+                console.log("correct");
+                countCorrect();
             } else {
                 console.log("incorrect");
+                // secondsLeft-3;
+                var incorrectFooter = document.getElementById("incorrect-footer");
+                incorrectFooter.textContent = "Incorrect!";
+
             } QI++
             askQuestion();
-    })
-    
-    // I was able to display the buttons.
+        })
 
-    document.getElementById("choices").append(button);
+        // I was able to display the buttons.
+
+        document.getElementById("choices").append(button);
     })
 }
 
@@ -100,7 +117,7 @@ function runquiz() {
     // create another div in html for questons just like before
     // question class show
 
-// below are a lot of failed attempts at getting the code working
+    // below are a lot of failed attempts at getting the code working
 
     // for (var i = 0; i < testArray.length; i++) {
     //     var quizQuestions = testArray[i];
@@ -122,20 +139,20 @@ function runquiz() {
 
     //     console.log("I made it into the loop.");
     //     console.log(quizQuestions);
-        
+
     //     var h1 = document.createElement("h1");
-   
-        // document.getElementById("questionLine").innerHTML=quiz.question1[0];
 
-        // var li = document.createElement("li");
+    // document.getElementById("questionLine").innerHTML=quiz.question1[0];
 
-        // document.getElementById("answerList").innerHTML=quiz.question1[1];
-      
+    // var li = document.createElement("li");
 
-        // li.textContent=quiz.question1[1];
-        // li.innerHTML=quiz.question1[2];
+    // document.getElementById("answerList").innerHTML=quiz.question1[1];
 
-        // console.log("quiz questions");
+
+    // li.textContent=quiz.question1[1];
+    // li.innerHTML=quiz.question1[2];
+
+    // console.log("quiz questions");
     // }
 }
 
