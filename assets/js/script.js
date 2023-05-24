@@ -99,6 +99,8 @@ function askQuestion() {
                 console.log("incorrect");
                 // secondsLeft-3;
                 var incorrectFooter = document.getElementById("incorrect-footer");
+                incorrectFooter.setAttribute("style", "color: grey; font-size: 20px");
+                incorrectFooter.style.alignItems="center";
                 incorrectFooter.textContent = "Incorrect!";
 
             } QI++
