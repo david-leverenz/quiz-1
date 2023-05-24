@@ -51,6 +51,7 @@ function quiztimer() {
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
             console.log("Timer done!");
+            // gameOver();
         }
     }, 1000);
 
@@ -177,10 +178,16 @@ startButton.addEventListener("click", function () {
 // This was going to be the start of my game over function if I had the time to work with it.
 // gameOver()
 
-// function gameOver()
-//     var scoreButton = document.querySelector(".score-button");
-// scoreButton.addEventListener("click", function () {
-//         console.log("Score!");
+// function gameOver() {
+//  var hideQuestion = document.getElementById("questions");
+// hideQuestion.setAttribute("class", "hide");
+// document.getElementById("game-over").textContent("Game Over!");
+// console.log("It should say game over on the screen");
 
-// var form = document.createElement("initials")
-// initials.setAttribute("type","text");
+// // var scoreButton = document.querySelector(".score-button");
+// // scoreButton.addEventListener("click", function () {
+// //         console.log("Score!");
+
+// // var form = document.createElement("initials")
+// // initials.setAttribute("type","text");
+// }
