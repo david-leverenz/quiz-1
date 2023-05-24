@@ -10,4 +10,8 @@ p {
 
 .hide {
     display: none;
-    }
+}
+
+h2 {
+    display: list-item;
+}

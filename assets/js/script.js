@@ -164,6 +164,8 @@ startButton.addEventListener("click", function () {
     // runquiz();
 
 })
+
+// This was going to be the start of my game over function if I had the time to work with it.
 // gameOver()
 
 // function gameOver()
