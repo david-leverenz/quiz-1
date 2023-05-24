@@ -78,40 +78,49 @@ function countCorrect() {
 // for some reason it is not clearing out the previous question's answers
 
 function askQuestion() {
-    console.log(quiz[0].question);
-    var questionTitle = document.getElementById("question-title");
-    questionTitle.textContent = quiz[QI].question;
+    if (QI < quiz.length) {
+        console.log(quiz[0].question);
+        var questionTitle = document.getElementById("question-title");
+        questionTitle.textContent = quiz[QI].question;
+        document.getElementById("choices").innerHTML = ""
+        quiz[QI].answers.forEach(function (answer) {
+            var button = document.createElement("button");
+            button.textContent = answer;
+            button.setAttribute("value", answer);
+            button.setAttribute("style", "color:white; font-size: 20px; background-color: purple; border-radius: 10px");
+            document.getElementById("choices").append(button);
+            button.addEventListener("click", function (e) {
+                var userSelection = e.target.value;
 
-    quiz[QI].answers.forEach(function (answer) {
-        var button = document.createElement("button");
-        button.textContent = answer;
-        button.setAttribute("value", answer);
-        button.setAttribute("style", "color:white; font-size: 20px; background-color: purple; border-radius: 10px");
-        button.addEventListener("click", function (e) {
-            var userSelection = e.target.value;
+                // I was able to console.log the fact that I am getting either right or wrong answers
+                // I can also display incorrect at the bottom if the answer is wrong
 
-            // I was able to console.log the fact that I am getting either right or wrong answers
-            // I can also display incorrect at the bottom if the answer is wrong
+                console.log(QI, quiz.length);
+                if (userSelection === quiz[QI].correct) {
+                    console.log("correct");
+                    countCorrect();
+                } else {
+                    console.log("incorrect");
+                    // secondsLeft-3;
+                    var incorrectFooter = document.getElementById("incorrect-footer");
+                    incorrectFooter.setAttribute("style", "color: grey; font-size: 20px");
+                    incorrectFooter.style.alignItems = "center";
+                    incorrectFooter.textContent = "Incorrect!";
 
-            if (userSelection === quiz[QI].correct) {
-                console.log("correct");
-                countCorrect();
-            } else {
-                console.log("incorrect");
-                // secondsLeft-3;
-                var incorrectFooter = document.getElementById("incorrect-footer");
-                incorrectFooter.setAttribute("style", "color: grey; font-size: 20px");
-                incorrectFooter.style.alignItems="center";
-                incorrectFooter.textContent = "Incorrect!";
+                } QI++
 
-            } QI++
-            askQuestion();
-        })
+                askQuestion();
+            });
+         })
+         } else {
+            console.log("Game Over!");    
+            gameOver()
+            }
+    
 
         // I was able to display the buttons.
 
-        document.getElementById("choices").append(button);
-    })
+
 }
 
 // starts the quiz and gets rid of the opening paragraph
@@ -178,16 +187,16 @@ startButton.addEventListener("click", function () {
 // This was going to be the start of my game over function if I had the time to work with it.
 // gameOver()
 
-// function gameOver() {
-//  var hideQuestion = document.getElementById("questions");
-// hideQuestion.setAttribute("class", "hide");
-// document.getElementById("game-over").textContent("Game Over!");
-// console.log("It should say game over on the screen");
+function gameOver() {
+    var hideQuestion = document.getElementById("questions");
+    hideQuestion.setAttribute("class", "hide");
+    document.getElementById("game-over").textContent("Game Over!");
+    console.log("It should say game over on the screen");
 
-// // var scoreButton = document.querySelector(".score-button");
-// // scoreButton.addEventListener("click", function () {
-// //         console.log("Score!");
+    // var scoreButton = document.querySelector(".score-button");
+    // scoreButton.addEventListener("click", function () {
+    //         console.log("Score!");
 
-// // var form = document.createElement("initials")
-// // initials.setAttribute("type","text");
-// }
+    // var form = document.createElement("initials")
+    // initials.setAttribute("type","text");
+}
