@@ -12,6 +12,9 @@
 
 // I struggled with the format of the quiz but believe I got it correct.
 
+// var allButtons = document.querySelectorAll("button");
+// allButtons.setAttribute("style", "color:blue; font-size: 30px");
+
 var quiz = [{
     question: "The condition in an if/else statement is enclosed with ___________.",
     answers: ["quotes", "curly brackets", "parenthesis", "square brackets"],
@@ -35,6 +38,9 @@ console.log("Quiz length: " + Object.keys(quiz).length);
 var startButton = document.querySelector(".start-button");
 var timer = document.querySelector("#timer");
 var secondsLeft = 10;
+
+startButton.setAttribute("style", "color:white; font-size: 20px; background-color: purple; border-radius: 10px");
+// button.setAttribute("style", "color:white; font-size: 20px; background-color: purple; border-radius: 10px");
 
 // created this function to start the timer
 
@@ -79,6 +85,7 @@ function askQuestion() {
         var button = document.createElement("button");
         button.textContent = answer;
         button.setAttribute("value", answer);
+        button.setAttribute("style", "color:white; font-size: 20px; background-color: purple; border-radius: 10px");
         button.addEventListener("click", function (e) {
             var userSelection = e.target.value;
 
