@@ -190,7 +190,8 @@ startButton.addEventListener("click", function () {
 function gameOver() {
     var hideQuestion = document.getElementById("questions");
     hideQuestion.setAttribute("class", "hide");
-    document.getElementById("game-over").textContent("Game Over!");
+    document.getElementById("game-over").textContent = "Game Over!";
+    // gameOverText.append("Game Over!");
     console.log("It should say game over on the screen");
 
     // var scoreButton = document.querySelector(".score-button");
