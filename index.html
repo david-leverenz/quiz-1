@@ -28,9 +28,22 @@
         <div id="questions" class="hide" style="border: 1px solid black">
             <h2 id="question-title"></h2>
             <div id="choices" class="choices"></div>
+            <div id="incorrect-footer" class="hideFooter"></div>
         </div>
-        <div id="game-over"></div>
-        <div id="incorrect-footer" class="hideFooter"></div>
+        <div id="game-over" class="hide">
+            <h2>Game Over!</h2>
+            <!-- self-closing element -->
+            <input id = "inputForm" type="text" placeholder="enter initials"/>
+            <button id="submitButton">
+                Submit
+            </button>
+        </div>
+        <div id="high-scores" class="hide">
+            <h2>High Scores</h2>
+            <div id="high-scores-list">
+            </div>
+        </div>
+
     </main>
 
     <script src="./assets/js/script.js"></script>

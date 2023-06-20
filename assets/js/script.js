@@ -1,19 +1,8 @@
-// var quiz = {
-//     question1: ["The condition in an if/else statement is enclosed with ___________.", "quotes", "curly brackets", "parenthesis", "square brackets", 2],
-
-//     question2: ["Commonly used data types DO NOT include:", "strings", "booleans", "numbers", "alerts", 3]
-// }
-
-// question1: {question: "The condition in an if/else statement is enclosed with ___________.", answer1: "quotes", answer2: "curly brackets", answer3: "parenthesis", answer4: "square brackets", correct: 2,},
-
-// question2: {question: "Commonly used data types DO NOT include:", answer1: "strings", answer2: "booleans", answer3: "numbers", answer4: "alerts", correct: 3,}
-
-// }
-
-// I struggled with the format of the quiz but believe I got it correct.
-
-// var allButtons = document.querySelectorAll("button");
-// allButtons.setAttribute("style", "color:blue; font-size: 30px");
+var incorrectFooter = document.getElementById("incorrect-footer");
+var inputForm = document.getElementById("inputForm");
+var submitButton = document.getElementById("submitButton");
+var highScoresEl = document.getElementById("high-scores");
+var highScoresList = document.getElementById("high-scores-list");
 
 var quiz = [{
     question: "The condition in an if/else statement is enclosed with ___________.",
@@ -25,9 +14,6 @@ var quiz = [{
     answers: ["strings", "booleans", "numbers", "alerts"],
     correct: "alerts",
 }]
-// console.log(quiz);
-
-// var testArray = ["Question1", "Question2", "Question3"];
 
 // Just to make sure the quiz is being read properly.
 
@@ -40,7 +26,6 @@ var timer = document.querySelector("#timer");
 var secondsLeft = 10;
 
 startButton.setAttribute("style", "color:white; font-size: 20px; background-color: purple; border-radius: 10px");
-// button.setAttribute("style", "color:white; font-size: 20px; background-color: purple; border-radius: 10px");
 
 // created this function to start the timer
 
@@ -51,7 +36,7 @@ function quiztimer() {
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
             console.log("Timer done!");
-            // gameOver();
+            gameOver();
         }
     }, 1000);
 
@@ -64,20 +49,18 @@ function quiztimer() {
 
 var QI = 0;
 
-//  created a function to count correct answers and store that value in local storage
 
 var correctCount = 0
 
 function countCorrect() {
-    localStorage.setItem("count", correctCount);;
     correctCount++;
-    localStorage.setItem("count", correctCount);
 }
 
 //  create a function that loops through each question and answers
 // for some reason it is not clearing out the previous question's answers
 
 function askQuestion() {
+    incorrectFooter.textContent = "";    
     if (QI < quiz.length) {
         console.log(quiz[0].question);
         var questionTitle = document.getElementById("question-title");
@@ -100,16 +83,15 @@ function askQuestion() {
                     console.log("correct");
                     countCorrect();
                 } else {
-                    console.log("incorrect");
-                    // secondsLeft-3;
-                    var incorrectFooter = document.getElementById("incorrect-footer");
+                    secondsLeft-=3;
                     incorrectFooter.setAttribute("style", "color: grey; font-size: 20px");
                     incorrectFooter.style.alignItems = "center";
                     incorrectFooter.textContent = "Incorrect!";
 
+
                 } QI++
 
-                askQuestion();
+                setTimeout(askQuestion, 500); // setTimeout is built in
             });
          })
          } else {
@@ -130,47 +112,13 @@ function runquiz() {
     var startScreen = document.getElementById("start-screen");
     startScreen.setAttribute("class", "hide");
 
-    document.getElementById("questions").removeAttribute("class");
+    document.getElementById("questions").classList.remove("hide"); // add, remove and toggle for classList.
     askQuestion()
 
     // create another div in html for questons just like before
     // question class show
 
-    // below are a lot of failed attempts at getting the code working
-
-    // for (var i = 0; i < testArray.length; i++) {
-    //     var quizQuestions = testArray[i];
-
-    //     console.log("I made it into the loop.");
-
-    //     var h1 = document.createElement("h1");
-    //     h1.textContent = quizQuestions;
-
-    //     document.body.appendChild(h1);
-
-    //     console.log(h1);
-    //     console.log("quiz questions");
-
-    // var answerListItems = document.querySelector("#answerList");
-
-    //     for (var i = 0; i < Object.keys(quiz).length; i++) {
-    //     var quizQuestions = quiz[i];
-
-    //     console.log("I made it into the loop.");
-    //     console.log(quizQuestions);
-
-    //     var h1 = document.createElement("h1");
-
-    // document.getElementById("questionLine").innerHTML=quiz.question1[0];
-
-    // var li = document.createElement("li");
-
-    // document.getElementById("answerList").innerHTML=quiz.question1[1];
-
-
-    // li.textContent=quiz.question1[1];
-    // li.innerHTML=quiz.question1[2];
-
+    
     // console.log("quiz questions");
     // }
 }
@@ -187,17 +135,49 @@ startButton.addEventListener("click", function () {
 // This was going to be the start of my game over function if I had the time to work with it.
 // gameOver()
 
+submitButton.setAttribute("style", "color:white; font-size: 20px; background-color: purple; border-radius: 10px");
+submitButton.addEventListener("click", function () {
+
+    var initials = inputForm.value;
+    var highScoreObj = {
+    initials,
+    score: correctCount
+    }
+    var highScores = JSON.parse(localStorage.getItem("highScores")) || []
+    highScores.push(highScoreObj);
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+    document.getElementById("high-scores").classList.remove("hide");
+    document.getElementById("game-over").setAttribute("class", "hide");
+    var listScore = function () {
+        // highScoresEl.innerHTML = "";
+        document.getElementById("high-scores-list").innerHTML = ""
+        for (let i = 0; i < highScoreObj.length; i++) {
+            console.log(highScoreObj.length);
+            appendChild(initials.value) + appendChild(score.value)
+console.log(initials.value);
+            // var counter = highScores[i];
+
+        }
+    }
+    listScore();
+})
+
+// create a containaer for high scores that is  hidden by default
+// thenwhen the button is clicked you hide game over and remove hidden from high scores sectiom
+// then call a function that loops through local storage and display the items in desc order
+// sort: https://www.w3schools.com/jsref/jsref_sort.asp
+// array.sort(compareFunction)
+
+/* <script>
+const points = [{score:123}, {score:40}, {score:1233}, {score:33}, {score:11}];
+points.sort(function(a, b){return a.score-b.score});
+document.getElementById("demo").innerHTML = JSON.stringify(points)
+</script> */
+
+
 function gameOver() {
     var hideQuestion = document.getElementById("questions");
     hideQuestion.setAttribute("class", "hide");
-    document.getElementById("game-over").textContent = "Game Over!";
-    // gameOverText.append("Game Over!");
-    console.log("It should say game over on the screen");
-
-    // var scoreButton = document.querySelector(".score-button");
-    // scoreButton.addEventListener("click", function () {
-    //         console.log("Score!");
-
-    // var form = document.createElement("initials")
-    // initials.setAttribute("type","text");
+    document.getElementById("game-over").classList.remove("hide");    
 }
+
