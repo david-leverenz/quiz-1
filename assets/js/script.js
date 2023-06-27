@@ -3,6 +3,9 @@ var inputForm = document.getElementById("inputForm");
 var submitButton = document.getElementById("submitButton");
 var highScoresEl = document.getElementById("high-scores");
 var highScoresList = document.getElementById("high-scores-list");
+var hsInitials = document.getElementById("inits");
+var hsScore = document.getElementById("score");
+
 
 var quiz = [{
     question: "The condition in an if/else statement is enclosed with ___________.",
@@ -146,12 +149,14 @@ submitButton.addEventListener("click", function () {
     document.getElementById("high-scores").classList.remove("hide");
     document.getElementById("game-over").classList.add("hide");
     var listScore = function () {
-        highScoresList.innerHTML = ""
+        // highScoresList.innerHTML = ""
         highScores.sort(function(a, b){return b.score-a.score});
         for (let i = 0; i < 10; i++) {
             var highScore = highScores[i];
-            console.log(highScores.length);
+            
             highScoresList.innerHTML+=(`<li>${highScore.initials} | ${highScore.score}</li>`);
+        //    hsInitials.innerHTML=`${highScore.initials}`;
+        //    hsScore.innerHTML=`${highScore.score}`;
         }
     }
     listScore();
