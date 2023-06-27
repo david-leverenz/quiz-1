@@ -17,7 +17,7 @@ var quiz = [{
 
 // Just to make sure the quiz is being read properly.
 
-console.log("Quiz length: " + Object.keys(quiz).length);
+// console.log("Quiz length: " + Object.keys(quiz).length);
 
 // timer counts down from 10 for testing purposes
 
@@ -28,14 +28,15 @@ var secondsLeft = 10;
 startButton.setAttribute("style", "color:white; font-size: 20px; background-color: purple; border-radius: 10px");
 
 // created this function to start the timer
+var timerInterval;
 
 function quiztimer() {
-    var timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
         secondsLeft--;
         timer.textContent = "Time: " + secondsLeft;
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
-            console.log("Timer done!");
+            // console.log("Timer done!");
             gameOver();
         }
     }, 1000);
@@ -60,9 +61,9 @@ function countCorrect() {
 // for some reason it is not clearing out the previous question's answers
 
 function askQuestion() {
-    incorrectFooter.textContent = "";    
+    incorrectFooter.textContent = "";
     if (QI < quiz.length) {
-        console.log(quiz[0].question);
+        // console.log(quiz[0].question);
         var questionTitle = document.getElementById("question-title");
         questionTitle.textContent = quiz[QI].question;
         document.getElementById("choices").innerHTML = ""
@@ -78,12 +79,12 @@ function askQuestion() {
                 // I was able to console.log the fact that I am getting either right or wrong answers
                 // I can also display incorrect at the bottom if the answer is wrong
 
-                console.log(QI, quiz.length);
+                // console.log(QI, quiz.length);
                 if (userSelection === quiz[QI].correct) {
                     console.log("correct");
                     countCorrect();
                 } else {
-                    secondsLeft-=3;
+                    secondsLeft -= 3;
                     incorrectFooter.setAttribute("style", "color: grey; font-size: 20px");
                     incorrectFooter.style.alignItems = "center";
                     incorrectFooter.textContent = "Incorrect!";
@@ -93,15 +94,11 @@ function askQuestion() {
 
                 setTimeout(askQuestion, 500); // setTimeout is built in
             });
-         })
-         } else {
-            console.log("Game Over!");    
-            gameOver()
-            }
-    
-
-        // I was able to display the buttons.
-
+        })
+    } else {
+        // console.log("Game Over!");
+        gameOver()
+    }
 
 }
 
@@ -118,7 +115,7 @@ function runquiz() {
     // create another div in html for questons just like before
     // question class show
 
-    
+
     // console.log("quiz questions");
     // }
 }
@@ -126,7 +123,7 @@ function runquiz() {
 // start button that calls quiztimre()
 
 startButton.addEventListener("click", function () {
-    console.log("Start!");
+    // console.log("Start!");
     quiztimer();
     // runquiz();
 
@@ -140,23 +137,21 @@ submitButton.addEventListener("click", function () {
 
     var initials = inputForm.value;
     var highScoreObj = {
-    initials,
-    score: correctCount
+        initials,
+        score: correctCount
     }
     var highScores = JSON.parse(localStorage.getItem("highScores")) || []
     highScores.push(highScoreObj);
     localStorage.setItem("highScores", JSON.stringify(highScores));
     document.getElementById("high-scores").classList.remove("hide");
-    document.getElementById("game-over").setAttribute("class", "hide");
+    document.getElementById("game-over").classList.add("hide");
     var listScore = function () {
-        // highScoresEl.innerHTML = "";
-        document.getElementById("high-scores-list").innerHTML = ""
-        for (let i = 0; i < highScoreObj.length; i++) {
-            console.log(highScoreObj.length);
-            appendChild(initials.value) + appendChild(score.value)
-console.log(initials.value);
-            // var counter = highScores[i];
-
+        highScoresList.innerHTML = ""
+        highScores.sort(function(a, b){return b.score-a.score});
+        for (let i = 0; i < 10; i++) {
+            var highScore = highScores[i];
+            console.log(highScores.length);
+            highScoresList.innerHTML+=(`<li>${highScore.initials} | ${highScore.score}</li>`);
         }
     }
     listScore();
@@ -168,16 +163,15 @@ console.log(initials.value);
 // sort: https://www.w3schools.com/jsref/jsref_sort.asp
 // array.sort(compareFunction)
 
-/* <script>
-const points = [{score:123}, {score:40}, {score:1233}, {score:33}, {score:11}];
-points.sort(function(a, b){return a.score-b.score});
-document.getElementById("demo").innerHTML = JSON.stringify(points)
-</script> */
+
+
+
 
 
 function gameOver() {
+    clearInterval(timerInterval);
     var hideQuestion = document.getElementById("questions");
     hideQuestion.setAttribute("class", "hide");
-    document.getElementById("game-over").classList.remove("hide");    
+    document.getElementById("game-over").classList.remove("hide");
 }
 

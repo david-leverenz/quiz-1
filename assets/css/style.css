@@ -9,12 +9,12 @@ p {
 }
 
 .hide {
-    display: none;
+    display: none !important; 
 }
 
-h2 {
+/* h2 {
     display: list-item;
-}
+} */
 
 #timer {
     position: fixed;
@@ -46,4 +46,12 @@ a {
     margin: auto;
     width: 30%;
     padding: 10px;    
+}
+
+#high-scores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
 }
