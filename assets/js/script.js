@@ -1,3 +1,4 @@
+// Housekeeping, to make referencing these things easier.
 var incorrectFooter = document.getElementById("incorrect-footer");
 var inputForm = document.getElementById("inputForm");
 var submitButton = document.getElementById("submitButton");
@@ -6,7 +7,7 @@ var highScoresList = document.getElementById("high-scores-list");
 var hsInitials = document.getElementById("inits");
 var hsScore = document.getElementById("score");
 
-
+//  This is the quiz
 var quiz = [{
     question: "The condition in an if/else statement is enclosed with ___________.",
     answers: ["quotes", "curly brackets", "parenthesis", "square brackets"],
@@ -16,21 +17,56 @@ var quiz = [{
     question: "Commonly used data types DO NOT include:",
     answers: ["strings", "booleans", "numbers", "alerts"],
     correct: "alerts",
+},
+{
+    question: "People who drive slowly do so because:",
+    answers: ["they're scared", "they're texting", "they're not paying attention", "they don't care"],
+    correct: "they don't care",
+},
+{
+    question: "Routes can be confusing because:",
+    answers: ["It's easy to get confused", "You made a dumb mistake", "You cut and pasted", "All of the above"],
+    correct: "All of the above",
+},
+{
+    question: "To find a value in an Excel spreadsheet you would use:",
+    answers: ["Vlookup", "Instr", "Hlookup", "Party"],
+    correct: "Vlookup",
+},
+{
+    question: "The most commonly used password is:",
+    answers: ["password", "1234", "birthday", "kid's names"],
+    correct: "1234",
+},
+{
+    question: "The Wall is a good album because:",
+    answers: ["It is in the key of C", "It is a concept album", "The music is scary", "The subject is scary"],
+    correct: "It is in the key of C",
+},
+{
+    question: "My children take advantage of me because:",
+    answers: ["I am a tad slow", "They are way smarter than you would think", "They are a-holes", "I love them"],
+    correct: "I love them",
+},
+{
+    question: "The best Dorito is:",
+    answers: ["Orange", "Blue", "Taco", "All of the above"],
+    correct: "Orange",
+},
+{
+    question: "Bootcamp graders are super cool because:",
+    answers: ["They forgive little problems", "They understand the pressure", "They have been through it too", "No reason, they are just cool"],
+    correct: "No reason, they are just cool",
 }]
 
-// Just to make sure the quiz is being read properly.
-
-// console.log("Quiz length: " + Object.keys(quiz).length);
-
-// timer counts down from 10 for testing purposes
-
+// This is the button to start the quiz and the timer
 var startButton = document.querySelector(".start-button");
 var timer = document.querySelector("#timer");
-var secondsLeft = 10;
+var secondsLeft = 30;
 
 startButton.setAttribute("style", "color:white; font-size: 20px; background-color: purple; border-radius: 10px");
 
-// created this function to start the timer
+// This function controls the timer
 var timerInterval;
 
 function quiztimer() {
@@ -39,7 +75,6 @@ function quiztimer() {
         timer.textContent = "Time: " + secondsLeft;
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
-            // console.log("Timer done!");
             gameOver();
         }
     }, 1000);
@@ -53,20 +88,18 @@ function quiztimer() {
 
 var QI = 0;
 
-
 var correctCount = 0
 
+// Counts the number of correct answers.
 function countCorrect() {
     correctCount++;
 }
 
-//  create a function that loops through each question and answers
-// for some reason it is not clearing out the previous question's answers
+//  This function presents question and answer objects.  It counts the number of correct answers and displays incorrect when you get one wrong.
 
 function askQuestion() {
     incorrectFooter.textContent = "";
     if (QI < quiz.length) {
-        // console.log(quiz[0].question);
         var questionTitle = document.getElementById("question-title");
         questionTitle.textContent = quiz[QI].question;
         document.getElementById("choices").innerHTML = ""
@@ -78,11 +111,6 @@ function askQuestion() {
             document.getElementById("choices").append(button);
             button.addEventListener("click", function (e) {
                 var userSelection = e.target.value;
-
-                // I was able to console.log the fact that I am getting either right or wrong answers
-                // I can also display incorrect at the bottom if the answer is wrong
-
-                // console.log(QI, quiz.length);
                 if (userSelection === quiz[QI].correct) {
                     console.log("correct");
                     countCorrect();
@@ -92,21 +120,18 @@ function askQuestion() {
                     incorrectFooter.style.alignItems = "center";
                     incorrectFooter.textContent = "Incorrect!";
 
-
                 } QI++
 
                 setTimeout(askQuestion, 500); // setTimeout is built in
             });
         })
     } else {
-        // console.log("Game Over!");
         gameOver()
     }
 
 }
 
 // starts the quiz and gets rid of the opening paragraph
-
 function runquiz() {
 
     var startScreen = document.getElementById("start-screen");
@@ -114,27 +139,14 @@ function runquiz() {
 
     document.getElementById("questions").classList.remove("hide"); // add, remove and toggle for classList.
     askQuestion()
-
-    // create another div in html for questons just like before
-    // question class show
-
-
-    // console.log("quiz questions");
-    // }
 }
 
-// start button that calls quiztimre()
-
+// start button that calls quiztimer()
 startButton.addEventListener("click", function () {
-    // console.log("Start!");
     quiztimer();
-    // runquiz();
-
 })
 
-// This was going to be the start of my game over function if I had the time to work with it.
-// gameOver()
-
+// This gets the quiz taker's initials and pushes their score to local storage.  It also displays the top 10 scores.
 submitButton.setAttribute("style", "color:white; font-size: 20px; background-color: purple; border-radius: 10px");
 submitButton.addEventListener("click", function () {
 
@@ -149,30 +161,19 @@ submitButton.addEventListener("click", function () {
     document.getElementById("high-scores").classList.remove("hide");
     document.getElementById("game-over").classList.add("hide");
     var listScore = function () {
-        // highScoresList.innerHTML = ""
+        
         highScores.sort(function(a, b){return b.score-a.score});
         for (let i = 0; i < 10; i++) {
             var highScore = highScores[i];
             
             highScoresList.innerHTML+=(`<li>${highScore.initials} | ${highScore.score}</li>`);
-        //    hsInitials.innerHTML=`${highScore.initials}`;
-        //    hsScore.innerHTML=`${highScore.score}`;
+
         }
     }
     listScore();
 })
 
-// create a containaer for high scores that is  hidden by default
-// thenwhen the button is clicked you hide game over and remove hidden from high scores sectiom
-// then call a function that loops through local storage and display the items in desc order
-// sort: https://www.w3schools.com/jsref/jsref_sort.asp
-// array.sort(compareFunction)
-
-
-
-
-
-
+// This function ends the game.
 function gameOver() {
     clearInterval(timerInterval);
     var hideQuestion = document.getElementById("questions");

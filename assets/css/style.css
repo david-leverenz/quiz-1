@@ -12,10 +12,6 @@ p {
     display: none !important; 
 }
 
-/* h2 {
-    display: list-item;
-} */
-
 #timer {
     position: fixed;
     top: 10px;
