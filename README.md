@@ -1,14 +1,22 @@
 # Quiz
-This is a quiz that presents the user with questions and grades the clicked answer.  I obviously ran out of time on this project.  I had a health issue on Monday that prevented me from attending a scheduled tutoring session.
+This is a quiz that presents the user with questions and grades the clicked answer.
 
 ## Description
-You are taking a code quiz.  When you click the start button a timer starts and you are presented with a question. I was able to get this working. <br>
-When you answer a question you are presented with another question. I almost got this working. <br>
-When you answer a question incorrectly then time is subtracted from the clock.  I did not get this working but believe I was on the right track.  I have it console logging correect and incorrect answers.<br>
-When all questions are answered or the timer reaches 0 the the game is over. I did not get this working. <br>
-When the game is over you can save your initials and score.  I did not get this fully working but I created something that logs correct answer count to local storage.<br>
+You are taking a code quiz.  When you click the start button a timer starts and you are presented with a question.<br>
+When you answer a question you are presented with another question.<br>
+When you answer a question incorrectly then time is subtracted from the clock.<br>
+When all questions are answered or the timer reaches 0 the the game is over.<br>
+When the game is over you can save your initials and score.<br>
+
+## Links
+**GitHub:** https://github.com/david-leverenz/mvc-tech-blog
+**Live Link:** https://afternoon-plateau-91996-143dd3e291e8.herokuapp.com/
+**Screen Shot:**
+![image](https://github.com/david-leverenz/quiz-1/assets/131185593/f4d73f2d-0d5e-4670-92c3-8c33581df0b7)
+
 
 ## Getting Started
+N/A
 ### Dependencies
 N/A
 ### Installing
