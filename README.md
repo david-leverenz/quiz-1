@@ -9,7 +9,7 @@ When all questions are answered or the timer reaches 0 the the game is over.<br>
 When the game is over you can save your initials and score.<br>
 
 ## Links
-**GitHub:** https://github.com/david-leverenz/mvc-tech-blog
+**GitHub:** https://github.com/david-leverenz/quiz-1<br>
 **Live Link:** https://afternoon-plateau-91996-143dd3e291e8.herokuapp.com/
 **Screen Shot:**
 ![image](https://github.com/david-leverenz/quiz-1/assets/131185593/f4d73f2d-0d5e-4670-92c3-8c33581df0b7)
